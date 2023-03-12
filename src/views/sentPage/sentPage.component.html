@@ -1,0 +1,20 @@
+<!-- Start of Sent Information card -->
+<mat-card class="example-card">
+    <mat-card-header>
+        <mat-card-title>iBook App</mat-card-title>
+        <mat-card-subtitle>Next Gen Book Writing</mat-card-subtitle>
+    </mat-card-header>
+    
+    <!-- Start of Showing User Required Fields -->
+    <p class="friend-info">{{friendData.name}}</p>
+    <p class="friend-info">{{friendData.city}}</p>
+    <p class="friend-info">{{friendData.email}}</p>
+    <p class="friend-info">{{friendData.address}}</p>
+    <!-- End of Showing User Required Fields -->
+
+    <!-- Start of Showing Editor Information -->
+    <mat-card-content [innerHTML]="friendData.document"></mat-card-content>
+    <!-- End of Showing Editor Information -->
+
+</mat-card>
+<!-- Start of Sent Information card -->

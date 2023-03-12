@@ -1,0 +1,27 @@
+.example-card {
+    max-width: 600px;
+    margin: 40px auto;
+    background: #FFFFFF;
+    border: 1px solid #DBDCE1;
+    box-shadow: 0px 16px 40px rgba(91, 93, 107, 0.24);
+    border-radius: 8px;
+}
+
+.mat-mdc-card-header {
+    display: inline-block;
+    padding: 16px 16px 0;
+    text-align: center;
+    background-color: #3f51b5 !important;
+    color: #fff !important;
+    padding-bottom: 14px;
+    border-radius: 8px 8px 0 0;
+}
+
+.mat-mdc-card-subtitle {
+    color: #FFFFFF;
+}
+
+.friend-info {
+    padding: 10px 10px;
+    font-size: 22px;
+}

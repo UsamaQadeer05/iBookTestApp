@@ -1,0 +1,173 @@
+
+<!-- Start of Form -->
+<form [formGroup]="documentForm" (ngSubmit)="onSubmit()">
+
+    <!-- Start of Document Form Card -->
+    <mat-card class="document-card">
+        <mat-card-header>
+            <mat-card-title>iBook App</mat-card-title>
+            <mat-card-subtitle>Next Gen Book Writing</mat-card-subtitle>
+        </mat-card-header>
+        
+        <mat-card-content>
+            <mat-grid-list cols="1" rowHeight="1:0.19">
+                <!-- Start of Name Field -->
+                <mat-grid-tile>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Name</mat-label>
+                        <input 
+                            matInput 
+                            formControlName="name" 
+                            placeholder="Enter friend's name"
+                            [ngClass]="{ 'is-invalid': submitted && f['name'].errors }" />
+                    </mat-form-field>
+
+                    <!-- Start of Validation Message -->
+                    <div *ngIf="submitted && f['name'].errors" class="invalid-feedback">
+                        <div *ngIf="f['name'].errors['required']">Name is required</div>
+                    </div>
+                    <!-- End of Validation Message -->
+
+                </mat-grid-tile>
+                <!-- End of Name Field -->
+
+                <!-- Start of City Field -->
+                <mat-grid-tile>
+                    <mat-form-field appearance="outline">
+                        <mat-label>City</mat-label>
+                        <input 
+                            matInput 
+                            formControlName="city" 
+                            placeholder="Enter friend's city"
+                            [ngClass]="{ 'is-invalid': submitted && f['city'].errors }" />
+                    </mat-form-field>
+                
+                    <!-- Start of Validation Message -->
+                    <div *ngIf="submitted && f['city'].errors" class="invalid-feedback">
+                        <div *ngIf="f['city'].errors['required']">City is required</div>
+                    </div>
+                    <!-- End of Validation Message -->
+
+                </mat-grid-tile>
+                <!-- End of City Field -->
+
+                <!-- Start Email Field -->
+                <mat-grid-tile>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Email</mat-label>
+                        <input 
+                            matInput 
+                            formControlName="email" 
+                            placeholder="Enter friend's email"
+                            [ngClass]="{ 'is-invalid': submitted && f['email'].errors }" />
+                    </mat-form-field>
+
+                    <!-- Start of Validation Message -->
+                    <div *ngIf="submitted && f['email'].errors" class="invalid-feedback">
+                        <div *ngIf="f['email'].errors['required']">Email is required</div>
+                        <div *ngIf="f['email'].errors['email']">Email must be a valid email address</div>
+                    </div>
+                    <!-- End of Validation Message -->
+
+                </mat-grid-tile>
+                <!-- End Email Field -->
+
+                <!-- Start of Address Field -->
+                <mat-grid-tile>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Address</mat-label>
+                        <textarea 
+                            matInput 
+                            formControlName="address" 
+                            placeholder="Enter friend's address"
+                            [ngClass]="{ 'is-invalid': submitted && f['address'].errors }" >
+                        </textarea>
+                    </mat-form-field>
+
+                    <!-- Start of Validation Message -->
+                    <div *ngIf="submitted && f['address'].errors" class="invalid-feedback">
+                        <div *ngIf="f['address'].errors['required']">Address is required</div>
+                    </div>
+                    <!-- End of Validation Message -->
+
+                </mat-grid-tile>
+                <!-- End of Address Field -->
+
+            </mat-grid-list>
+
+            <!-- Start of Quil-Editor(Rich Textbox for Document Preparation) -->
+            <quill-editor
+                name="htmlText" 
+                [(ngModel)]="htmlText" 
+                [styles]="editorStyle"
+                [modules]="quillConfig" 
+                placeholder="Enter Text"
+                formControlName="document" 
+                (onContentChanged)="onContentChanged($event)"
+                (dblclick)="onDoubleClick($event)"
+                (onEditorCreated)="onEditorCreated($event)"
+                (onSelectionChanged)="onSelectionChanged($event)">
+            </quill-editor>
+            <!-- End of Quil-Editor(Rich Textbox for Document Preparation) -->
+
+            <!-- Start of Validation Message -->
+            <div *ngIf="submitted && f['document'].errors" class="invalid-feedback error-msg">
+                <div *ngIf="f['document'].errors['required']">Document is required</div>
+            </div>
+            <!-- End of Validation Message -->
+
+            <!-- Start of Terms & Condtions -->
+            <section class="terms-section">
+                <mat-checkbox 
+                    class="terms-margin" 
+                    formControlName="acceptTerms"
+                    [ngClass]="{ 'is-invalid': submitted && f['acceptTerms']['errors'] }" >
+                    Accept Terms & Conditions
+                </mat-checkbox>
+            </section>
+            <!-- End of Terms & Condtions -->
+
+            <!-- Start of Validation Message -->
+            <div *ngIf="submitted && f['acceptTerms']['errors']" class="invalid-feedback error-msg">Accept Terms & Conditions is required</div>
+            <!-- End of Validation Message -->
+
+        </mat-card-content>
+
+        <mat-card-actions>
+            <!-- Start of Submit Form Button -->
+            <button mat-fab extended color="primary">
+                <mat-icon>send</mat-icon>
+                Send
+            </button>
+            <!-- End of Submit Form Button -->
+
+        </mat-card-actions>
+
+    </mat-card>
+    <!-- End of Document Form Card -->
+
+
+    <!-- Start of Defination Card -->
+    <mat-card *ngIf="isOpenCard" class="defination-card">
+        <mat-card-header>
+            <mat-card-title>Word Defination</mat-card-title>
+        </mat-card-header>
+        <h1 class="text-center mt">{{wordInfo.word}}</h1>
+        <h1 class="text-center">{{wordInfo.phonetic}}</h1>
+        <h1 class="text-center">{{wordInfo.definition}}</h1>
+        
+        <mat-card-content>
+            <p>{{wordInfo.example}}</p>
+        </mat-card-content>
+        
+        <mat-card-actions>
+            <button mat-fab extended color="primary" (click)="closeCard()">
+                <mat-icon>close</mat-icon>
+                Close
+            </button>
+        </mat-card-actions>
+    </mat-card>
+    <!-- End of Defination Card -->
+
+</form>
+<!-- End of Form -->
